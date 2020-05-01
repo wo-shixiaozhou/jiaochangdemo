@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.onexiaomu.jiaochangdemo.user.dao.UserDao">
+
+    <select id="getAll" resultType="cn.onexiaomu.jiaochangdemo.user.entity.UserEntity" parameterType="java.util.Map">
+              select * from user;
+    </select>
+
+    <insert id="add" parameterType="cn.onexiaomu.jiaochangdemo.user.entity.UserEntity">
+        INSERT INTO `jiaochengdemo`.`user` ( `id`, `username`, `password`, `createtime`, `status` )
+        VALUES
+            ( null, #{username}, #{password}, #{createtime}, #{status} );
+    </insert>
+    <delete id="delete" parameterType="java.lang.Integer">
+      delete from user where id =${id};
+    </delete>
+
+    <select id="findById" resultType="cn.onexiaomu.jiaochangdemo.user.entity.UserEntity" parameterType="java.lang.Integer">
+        select * from user where id=${id};
+    </select>
+    <update id="updateUser" parameterType="cn.onexiaomu.jiaochangdemo.user.entity.UserEntity">
+        UPDATE `jiaochengdemo`.`user`
+        SET `username` = #{username},
+            `password` = #{password},
+            `createtime` = #{createtime},
+            `status` = #{status}
+        WHERE
+        `id` = ${id};
+    </update>
+
+
+</mapper>
